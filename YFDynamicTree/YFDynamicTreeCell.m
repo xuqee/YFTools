@@ -7,6 +7,11 @@
 //
 
 #import "YFDynamicTreeCell.h"
+#import "YFDynamicTreeNode.h"
+
+
+#define kBranchCellHeight 44
+#define kMemberCellHeight  49
 
 @implementation YFDynamicTreeCell
 
@@ -19,6 +24,25 @@
     [super setSelected:selected animated:animated];
 
     // Configure the view for the selected state
+}
+
++ (CGFloat)heightForCellWithType:(YFDynamicCellType)type{
+    
+    if (type == YFDynamicCellTypeBranch) {
+        return kBranchCellHeight;
+    }
+    return kMemberCellHeight;
+}
+
+- (IBAction)selectedBtnClicked:(UIButton *)sender {
+    if (_selectedBlock) {
+        _selectedBlock();
+    }
+}
+
+// 子类实现
+- (void)fillWithNode:(YFDynamicTreeNode*)node{
+    self.textLabel.text = node.name ;
 }
 
 @end

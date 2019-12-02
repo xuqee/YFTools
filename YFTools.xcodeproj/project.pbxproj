@@ -19,11 +19,13 @@
 		B894DB342387BEB200C1516A /* NSString+BundlePath.m in Sources */ = {isa = PBXBuildFile; fileRef = B894DB2C2387BEB200C1516A /* NSString+BundlePath.m */; };
 		B894DB392387BEE600C1516A /* UIButton+Progress.m in Sources */ = {isa = PBXBuildFile; fileRef = B894DB382387BEE600C1516A /* UIButton+Progress.m */; };
 		B894DB3C2387E01700C1516A /* YFNetWorkingCacheManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B894DB3B2387E01700C1516A /* YFNetWorkingCacheManager.m */; };
+		B89518C72394E5F1006A273D /* NSString+PinYin.m in Sources */ = {isa = PBXBuildFile; fileRef = B89518C62394E5F1006A273D /* NSString+PinYin.m */; };
 		B8A04297238D116B0028B6C2 /* YFDynamicTree.m in Sources */ = {isa = PBXBuildFile; fileRef = B8A04296238D116B0028B6C2 /* YFDynamicTree.m */; };
 		B8A0429A238D11BC0028B6C2 /* YFDynamicTreeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B8A04299238D11BC0028B6C2 /* YFDynamicTreeCell.m */; };
 		B8A0429D238D11DD0028B6C2 /* YFDynamicTreeNode.m in Sources */ = {isa = PBXBuildFile; fileRef = B8A0429C238D11DD0028B6C2 /* YFDynamicTreeNode.m */; };
 		B8A042A0238D11EE0028B6C2 /* YFDynamicTreeParser.m in Sources */ = {isa = PBXBuildFile; fileRef = B8A0429F238D11EE0028B6C2 /* YFDynamicTreeParser.m */; };
 		B8B575FB2384EC7900E800C4 /* YFBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B8B575FA2384EC7900E800C4 /* YFBaseViewController.m */; };
+		B8C2BD38238FBFB600A167CB /* YFBMKGeoCodeReverseManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B8C2BD37238FBFB600A167CB /* YFBMKGeoCodeReverseManager.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -67,6 +69,8 @@
 		B894DB382387BEE600C1516A /* UIButton+Progress.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+Progress.m"; sourceTree = "<group>"; };
 		B894DB3A2387E01700C1516A /* YFNetWorkingCacheManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YFNetWorkingCacheManager.h; sourceTree = "<group>"; };
 		B894DB3B2387E01700C1516A /* YFNetWorkingCacheManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YFNetWorkingCacheManager.m; sourceTree = "<group>"; };
+		B89518C52394E5F1006A273D /* NSString+PinYin.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSString+PinYin.h"; sourceTree = "<group>"; };
+		B89518C62394E5F1006A273D /* NSString+PinYin.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSString+PinYin.m"; sourceTree = "<group>"; };
 		B8A04295238D116B0028B6C2 /* YFDynamicTree.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YFDynamicTree.h; sourceTree = "<group>"; };
 		B8A04296238D116B0028B6C2 /* YFDynamicTree.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YFDynamicTree.m; sourceTree = "<group>"; };
 		B8A04298238D11BC0028B6C2 /* YFDynamicTreeCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YFDynamicTreeCell.h; sourceTree = "<group>"; };
@@ -79,6 +83,8 @@
 		B8B10A39238B7691006C6F56 /* YFDescriptionMacro.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YFDescriptionMacro.h; sourceTree = "<group>"; };
 		B8B575F92384EC7900E800C4 /* YFBaseViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YFBaseViewController.h; sourceTree = "<group>"; };
 		B8B575FA2384EC7900E800C4 /* YFBaseViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YFBaseViewController.m; sourceTree = "<group>"; };
+		B8C2BD36238FBFB600A167CB /* YFBMKGeoCodeReverseManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YFBMKGeoCodeReverseManager.h; sourceTree = "<group>"; };
+		B8C2BD37238FBFB600A167CB /* YFBMKGeoCodeReverseManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YFBMKGeoCodeReverseManager.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -134,12 +140,11 @@
 		B894DB1D2387BE8200C1516A /* YFCategories */ = {
 			isa = PBXGroup;
 			children = (
+				B89518C32394E58C006A273D /* NSString */,
 				B894DB362387BEE600C1516A /* UIButton+Progress */,
 				B894DB1E2387BEB200C1516A /* NSArray+LocaleLog */,
 				B894DB242387BEB200C1516A /* NSData+FormData */,
 				B894DB272387BEB200C1516A /* NSDictionary+LocaleLog */,
-				B894DB212387BEB200C1516A /* NSString+Base64 */,
-				B894DB2A2387BEB200C1516A /* NSString+BundlePath */,
 			);
 			path = YFCategories;
 			sourceTree = "<group>";
@@ -198,17 +203,36 @@
 			path = "UIButton+Progress";
 			sourceTree = "<group>";
 		};
+		B89518C32394E58C006A273D /* NSString */ = {
+			isa = PBXGroup;
+			children = (
+				B89518C42394E596006A273D /* NSString+PinYin */,
+				B894DB212387BEB200C1516A /* NSString+Base64 */,
+				B894DB2A2387BEB200C1516A /* NSString+BundlePath */,
+			);
+			path = NSString;
+			sourceTree = "<group>";
+		};
+		B89518C42394E596006A273D /* NSString+PinYin */ = {
+			isa = PBXGroup;
+			children = (
+				B89518C52394E5F1006A273D /* NSString+PinYin.h */,
+				B89518C62394E5F1006A273D /* NSString+PinYin.m */,
+			);
+			path = "NSString+PinYin";
+			sourceTree = "<group>";
+		};
 		B8A04283238CD9E90028B6C2 /* YFDynamicTree */ = {
 			isa = PBXGroup;
 			children = (
 				B8A04295238D116B0028B6C2 /* YFDynamicTree.h */,
 				B8A04296238D116B0028B6C2 /* YFDynamicTree.m */,
+				B8A0429E238D11EE0028B6C2 /* YFDynamicTreeParser.h */,
+				B8A0429F238D11EE0028B6C2 /* YFDynamicTreeParser.m */,
 				B8A04298238D11BC0028B6C2 /* YFDynamicTreeCell.h */,
 				B8A04299238D11BC0028B6C2 /* YFDynamicTreeCell.m */,
 				B8A0429B238D11DD0028B6C2 /* YFDynamicTreeNode.h */,
 				B8A0429C238D11DD0028B6C2 /* YFDynamicTreeNode.m */,
-				B8A0429E238D11EE0028B6C2 /* YFDynamicTreeParser.h */,
-				B8A0429F238D11EE0028B6C2 /* YFDynamicTreeParser.m */,
 			);
 			path = YFDynamicTree;
 			sourceTree = "<group>";
@@ -226,6 +250,7 @@
 				B894DB1223878DE500C1516A /* YFNetWork */,
 				B894DB0E23878A9B00C1516A /* YFCherkFormat */,
 				B80D0CE82385363400083573 /* YFBMKMapViewCtrl */,
+				B8C2BD35238FBE0A00A167CB /* YFBMKGeoCodeReverseHelper */,
 				B8A071472383F59100DE2F93 /* YFBaseViewController */,
 				B8A071462383F59100DE2F93 /* Products */,
 				E2B519F1B3C0CB4B17D264BA /* Pods */,
@@ -248,6 +273,15 @@
 				B8B575FA2384EC7900E800C4 /* YFBaseViewController.m */,
 			);
 			path = YFBaseViewController;
+			sourceTree = "<group>";
+		};
+		B8C2BD35238FBE0A00A167CB /* YFBMKGeoCodeReverseHelper */ = {
+			isa = PBXGroup;
+			children = (
+				B8C2BD36238FBFB600A167CB /* YFBMKGeoCodeReverseManager.h */,
+				B8C2BD37238FBFB600A167CB /* YFBMKGeoCodeReverseManager.m */,
+			);
+			path = YFBMKGeoCodeReverseHelper;
 			sourceTree = "<group>";
 		};
 		D4E54C2B0B8F719F23A4106F /* Frameworks */ = {
@@ -351,6 +385,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B89518C72394E5F1006A273D /* NSString+PinYin.m in Sources */,
 				B894DB392387BEE600C1516A /* UIButton+Progress.m in Sources */,
 				B8A042A0238D11EE0028B6C2 /* YFDynamicTreeParser.m in Sources */,
 				B894DB332387BEB200C1516A /* NSDictionary+LocaleLog.m in Sources */,
@@ -361,6 +396,7 @@
 				B894DB302387BEB200C1516A /* NSArray+LocaleLog.m in Sources */,
 				B894DB342387BEB200C1516A /* NSString+BundlePath.m in Sources */,
 				B80D0CEB2385365C00083573 /* YFBMKMapViewCtrl.m in Sources */,
+				B8C2BD38238FBFB600A167CB /* YFBMKGeoCodeReverseManager.m in Sources */,
 				B8B575FB2384EC7900E800C4 /* YFBaseViewController.m in Sources */,
 				B8A0429A238D11BC0028B6C2 /* YFDynamicTreeCell.m in Sources */,
 				B894DB1C2387B68E00C1516A /* YFAppInfo.m in Sources */,

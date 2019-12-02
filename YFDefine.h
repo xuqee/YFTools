@@ -23,6 +23,8 @@
 
 #import <YYKit.h>
 #import <Masonry.h>
+#import <ReactiveObjC.h>
 #import <SVProgressHUD/SVProgressHUD.h>
+#import <IQKeyboardManager.h>
 
 #endif /* YFDefine_h */

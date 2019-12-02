@@ -7,10 +7,14 @@
 //
 
 #import "YFBaseViewController.h"
-
+#import <BaiduMapAPI_Base/BMKBaseComponent.h>
+#import <BaiduMapAPI_Map/BMKMapComponent.h>
+#import <BMKLocationKit/BMKLocationComponent.h>
 NS_ASSUME_NONNULL_BEGIN
 
 @interface YFBMKMapViewCtrl : YFBaseViewController
+ 
+@property (nonatomic, strong)   BMKMapView *mapview ;
 
 @end
 

@@ -10,14 +10,9 @@
 
 #import <Masonry.h>
 
-#import <BaiduMapAPI_Base/BMKBaseComponent.h>
-#import <BaiduMapAPI_Map/BMKMapComponent.h>
-#import <BMKLocationKit/BMKLocationComponent.h>
-
-
 @interface YFBMKMapViewCtrl ()<BMKMapViewDelegate,BMKLocationManagerDelegate>
 
-@property (nonatomic, strong)   BMKMapView *mapview ;
+
 @property (nonatomic, strong)   BMKLocationManager *locationManager ;
 
 @end
@@ -66,6 +61,8 @@
 
 #pragma mark -- BMKMapViewDelegate
 - (void)mapViewDidFinishLoading:(BMKMapView *)mapView{
+    CLLocationCoordinate2D coor = CLLocationCoordinate2DMake(39.915, 116.404);
+    mapView.centerCoordinate = coor ;
     NSLog(@"mapViewDidFinishLoading");
 }
 
@@ -75,6 +72,7 @@
  *@param coordinate 空白处坐标点的经纬度
  */
 - (void)mapView:(BMKMapView *)mapView onClickedMapBlank:(CLLocationCoordinate2D)coordinate{
+    
     [self.view endEditing:YES ];
 }
 
@@ -85,9 +83,7 @@
        mapview.delegate = self ;
        mapview.zoomLevel = 17 ;
        mapview.rotateEnabled = NO ;
-          
-       CLLocationCoordinate2D coor = CLLocationCoordinate2DMake(39.915, 116.404);
-       mapview.centerCoordinate = coor ;
+       mapview.overlookEnabled = NO ;
        
        BMKLocationViewDisplayParam *displayParam = [[BMKLocationViewDisplayParam alloc]init];
        displayParam.isRotateAngleValid = NO;//跟随态旋转角度是否生效

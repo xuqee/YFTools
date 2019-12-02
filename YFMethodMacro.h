@@ -19,5 +19,9 @@
 #define kFloatValue(Str)      [Str floatValue]
 #define kBoolValue(Str)       [Str boolValue];
 
+#define RGB(r,g,b)              [UIColor colorWithRed:r/255. green:g/255. blue:b/255. alpha:1]
+#define RGBA(r,g,b,a)           [UIColor colorWithRed:r/255. green:g/255. blue:b/255. alpha:a]
+ 
+
 
 #endif /* YFMethodMacro_h */
