@@ -27,7 +27,6 @@
         make.edges.equalTo(self.view);
     }];
     [self.view sendSubviewToBack:_mapview];
-    [self.locationManager startUpdatingLocation];
 }
 
 - (void)viewWillAppear:(BOOL)animated{
@@ -37,6 +36,7 @@
 }
 
 - (void)viewWillDisappear:(BOOL)animated{
+    [_mapview.delegate mapView:_mapview onClickedMapBlank:_mapview.centerCoordinate];
     [super viewWillDisappear:animated];
     _mapview.delegate = nil ;
     [_mapview viewWillDisappear];
@@ -44,19 +44,29 @@
 
 #pragma mark --  BMKLocationManagerDelegate
 - (void)BMKLocationManager:(BMKLocationManager * _Nonnull)manager didUpdateLocation:(BMKLocation * _Nullable)location orError:(NSError * _Nullable)error{
+  
     if (error) {
         NSLog(@"%@",error.localizedDescription);
         return ;
     }
-    if (location) {
+    
+    if (location.location.coordinate.latitude < 1 ||  location.location.coordinate.longitude < 1 ) {
+        return ;
+    }
+    
+    if (location ) {
         BMKUserLocation *userLocation = [[BMKUserLocation alloc] init];
         userLocation.location = location.location ;
         if (location.rgcData.poiList.count >0) {
             userLocation.title = location.rgcData.poiList.firstObject.name ;
             userLocation.subtitle = location.rgcData.poiList.firstObject.addr ;
         }
-        [self.mapview updateLocationData:userLocation];
+        [_mapview updateLocationData:userLocation];
+        _mapview.userTrackingMode = BMKUserTrackingModeHeading;
+        self.userLocation = userLocation ;
     }
+    
+    
 }
 
 #pragma mark -- BMKMapViewDelegate
@@ -64,6 +74,7 @@
     CLLocationCoordinate2D coor = CLLocationCoordinate2DMake(39.915, 116.404);
     mapView.centerCoordinate = coor ;
     NSLog(@"mapViewDidFinishLoading");
+    [self.locationManager startUpdatingLocation];
 }
 
 /**
@@ -91,7 +102,7 @@
        [mapview updateLocationViewWithParam:displayParam];
           
        mapview.showsUserLocation = YES ;
-       mapview.userTrackingMode = BMKUserTrackingModeFollow ;
+       mapview.userTrackingMode = BMKUserTrackingModeFollow;
        mapview.isSelectedAnnotationViewFront = YES ;
        _mapview = mapview ;
    }

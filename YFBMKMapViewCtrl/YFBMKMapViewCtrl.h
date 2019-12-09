@@ -16,6 +16,8 @@ NS_ASSUME_NONNULL_BEGIN
  
 @property (nonatomic, strong)   BMKMapView *mapview ;
 
+@property (nonatomic, strong)   BMKUserLocation *userLocation ;
+
 @end
 
 NS_ASSUME_NONNULL_END
