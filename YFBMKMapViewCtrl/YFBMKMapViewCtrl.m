@@ -42,6 +42,14 @@
     [_mapview viewWillDisappear];
 }
 
+- (void)beginLocation {
+    if (_userLocation) {
+        [self.mapview setCenterCoordinate:_userLocation.location.coordinate animated:YES];
+    }else{
+        [self.locationManager startUpdatingLocation];
+    }
+}
+
 #pragma mark --  BMKLocationManagerDelegate
 - (void)BMKLocationManager:(BMKLocationManager * _Nonnull)manager didUpdateLocation:(BMKLocation * _Nullable)location orError:(NSError * _Nullable)error{
   

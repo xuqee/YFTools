@@ -82,7 +82,7 @@ static const double x_pi = 3.14159265358979324 * 3000.0 / 180.0;
 + (void)ggNaviWithEndCoor:(CLLocationCoordinate2D)endCoor presentSourceController:(UIViewController *)presentSourceController fromScheme:(NSString*)scheme{
     if ([[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:@"iosamap://"]]) {
         NSString * urlScheme = scheme ;
-        NSString *urlString = [[NSString stringWithFormat:@"iosamap://navi?sourceApplication=%@&backScheme=%@&lat=%f&lon=%f&dev=0&style=2",kAppName,urlScheme,endCoor.latitude, endCoor.longitude] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+        NSString *urlString = [NSString stringWithFormat:@"iosamap://navi?sourceApplication=%@&backScheme=%@&lat=%f&lon=%f&dev=0&style=2",kAppName,urlScheme,endCoor.latitude, endCoor.longitude];
         [[UIApplication  sharedApplication ] openURL:[NSURL URLWithString:urlString] options:@{} completionHandler:nil];
     }else{
         UIAlertController *alert = [UIAlertController alertControllerWithTitle:[NSString stringWithFormat:@"即将前往APP Store下载\"高德地图\"？"]  message:nil preferredStyle:UIAlertControllerStyleAlert];
