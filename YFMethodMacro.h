@@ -22,6 +22,9 @@
 #define kFloatValue(Str)      [Str floatValue]
 #define kBoolValue(Str)       [Str boolValue];
 
+
+#define  kOriginImg(imgName)    [[UIImage imageNamed:imgName] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]
+
 #define RGB(r,g,b)              [UIColor colorWithRed:r/255. green:g/255. blue:b/255. alpha:1]
 #define RGBA(r,g,b,a)           [UIColor colorWithRed:r/255. green:g/255. blue:b/255. alpha:a]
  

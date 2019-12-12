@@ -27,7 +27,7 @@ typedef void(^HttpRequestCache)(id responseCache);
 @property (nonatomic, copy)  void(^netWorkStatusBlock)(AFNetworkReachabilityStatus status);
  
 + (NSURLSessionTask *)POST:(NSString *)URL
-                    params:(NSDictionary *)params
+                    params:(nullable NSDictionary *)params
                   progress:(nullable HttpRequestProgress) progress
                    success:(HttpRequestSuccess)success
                    failure:(HttpRequestFailure)failure ;

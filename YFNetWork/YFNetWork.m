@@ -41,8 +41,8 @@ static NSMutableDictionary *httpTasks;
 #pragma mark -- request
 
 + (NSURLSessionTask *)POST:(NSString *)URL
-                    params:(NSDictionary *)params
-                  progress:(HttpRequestProgress) progress
+                    params:(NSDictionary *  )params
+                  progress:( HttpRequestProgress) progress
                    success:(HttpRequestSuccess)success
                    failure:(HttpRequestFailure)failure{
     
@@ -72,6 +72,10 @@ static NSMutableDictionary *httpTasks;
     AFHTTPSessionManager *manager = [self sessionManager];
     manager.requestSerializer.timeoutInterval = timeIntervarl ;
     __weak typeof(self) ws = self ;
+    NSString *url = [NSString stringWithFormat:@"%@?",URL] ;
+    for (NSString *key in [params allKeys]) {
+        url = [url stringByAppendingFormat:@"&%@=%@",key,params[@"key"]];
+    }
     NSURLSessionTask *task =  [manager POST:URL parameters:params progress:progress success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         success ? success(task ,responseObject) : nil ;
         //对数据进行异步缓存
