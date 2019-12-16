@@ -43,6 +43,7 @@
 }
 
 - (void)beginLocation {
+    self.mapview.zoomLevel = 17 ;
     if (_userLocation) {
         [self.mapview setCenterCoordinate:_userLocation.location.coordinate animated:YES];
     }else{
@@ -73,8 +74,6 @@
         _mapview.userTrackingMode = BMKUserTrackingModeHeading;
         self.userLocation = userLocation ;
     }
-    
-    
 }
 
 #pragma mark -- BMKMapViewDelegate
