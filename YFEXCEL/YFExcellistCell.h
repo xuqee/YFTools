@@ -8,9 +8,13 @@
 
 #import <UIKit/UIKit.h>
 
+#import "YFExcelGridView.h"
+
 NS_ASSUME_NONNULL_BEGIN
 
 @interface YFExcellistCell : UITableViewCell
+
+@property (nonatomic, strong)   YFExcelGridView *gridView ;
 
 @end
 

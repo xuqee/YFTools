@@ -12,7 +12,11 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface YFExcelGridView : UICollectionView
 
-@property (nonatomic, strong)   NSArray *contents ;
+
+
+- (void)setContents:(NSArray *)contents itemSizes:(NSArray *)itemSizes ;
+
++(NSArray *)itemSizesForStrs:(NSArray *)strs ;
 
 @end
 

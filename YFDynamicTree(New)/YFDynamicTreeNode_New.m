@@ -11,6 +11,11 @@
 
 @implementation YFDynamicTreeNode_New
 
+//- (id)copyWithZone:(NSZone *)zone {
+//    
+//    
+//}
+
 - (BOOL)isRoot{
     return self.fatherNodeID == nil ;
 }

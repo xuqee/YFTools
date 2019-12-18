@@ -12,9 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface YFEXCELView : UIView
 
-@property (nonatomic, strong)   NSDictionary *titles ;
-@property (nonatomic, strong)   NSArray *datas ;
-
+- (void)setKeys:(NSArray *)keys titles:(NSArray *)titles datas:(NSArray *)datas ;
 
 @end
 

@@ -8,11 +8,11 @@
 
 #import "YFExcellistCell.h"
 
-#import "YFExcelGridView.h"
+
 
 @interface YFExcellistCell ()<UIScrollViewDelegate>
 
-@property (nonatomic, strong)   YFExcelGridView *gridView ;
+
 
 @end
 

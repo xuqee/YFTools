@@ -7,14 +7,14 @@
 //
 
 #import "YFDynamicTree_New.h"
-#import "YFDynamicTreeNode_New.h"
-#import "YFDynamicTreeCell_New.h"
+ 
+#import "YFDynamicTreeParser_New.h"
 
 @interface YFDynamicTree_New ()<UITableViewDelegate,UITableViewDataSource>
 
 @property (nonatomic, strong)   UITableView *tableView ;
 @property (nonatomic, strong)   NSArray     *rootNodes ;
-
+@property (nonatomic, copy)     NSString    *cellReuseIdentify ;
 
 @end
 
@@ -27,6 +27,11 @@
      }
      return self ;
  }
+
+- (void)awakeFromNib{
+    [super awakeFromNib];
+    [self setup];
+}
 
 - (void)setTreeNodes:(NSArray *)treeNodes  rootNodes:(NSArray *)rootNodes{
     _treeNodes = [NSMutableArray arrayWithArray:treeNodes];
@@ -81,9 +86,6 @@
     return total ;
 }
 
-
-
-
 - (void)minisShowNodeFromNode:(YFDynamicTreeNode_New *)node{
     [node.nextLevelNodes enumerateObjectsUsingBlock:^(YFDynamicTreeNode_New * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         if ([self.showNodes containsObject:obj]) {
@@ -117,7 +119,7 @@
 }
  
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    YFDynamicTreeCell_New *cell = [tableView dequeueReusableCellWithIdentifier:kYFDynamicTreeCellIdentify] ;
+    YFDynamicTreeCell_New *cell = [tableView dequeueReusableCellWithIdentifier:self.cellReuseIdentify] ;
     YFDynamicTreeNode_New *node = _showNodes[indexPath.row] ;
     [cell fillWithNode:node];
     cell.selectedBlock = ^{
@@ -153,13 +155,28 @@
     return YES ;
 }
 
-
-#pragma mark --  Lazy
+#pragma mark -- UI
 
 - (void)setup{
     self.maxSelectCount = 0 ;
     self.selectedCount = 0 ;
     [self tableView] ;
+}
+
+- (void)registCellCls:(Class)cellCls reuseIdentify:(NSString *)identify{
+    self.cellReuseIdentify = identify ;
+    [self.tableView registerClass:cellCls forCellReuseIdentifier:identify];
+}
+- (void)registCellNib:(UINib *)nib  reuseIdentify:(NSString *)identify{
+    self.cellReuseIdentify = identify ;
+    [self.tableView registerNib:nib forCellReuseIdentifier:identify] ;
+}
+
+
+#pragma mark --  Lazy
+
+- (NSMutableArray *)selectedMembers{
+    return [YFDynamicTreeParser_New selectedMemberModelsFromTreeNodes:self.treeNodes];
 }
 
 - (UITableView *)tableView{
@@ -176,11 +193,6 @@
     return _tableView ;
 }
 
-- (void)registCellCls:(Class)cellCls{
-    [self.tableView registerClass:cellCls forCellReuseIdentifier:kYFDynamicTreeCellIdentify];
-}
-- (void)registCellNib:(UINib *)nib {
-    [self.tableView registerNib:nib forCellReuseIdentifier:kYFDynamicTreeCellIdentify] ;
-}
+
 
 @end

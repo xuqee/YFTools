@@ -13,6 +13,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface YFDynamicTreeParser_New : NSObject
 
+@property (nonatomic, strong)   NSMutableArray *treeNodes ;
+@property (nonatomic, strong)   NSMutableArray *showNodes ;
+
 ///初始化一些关键的keyword
 - (void)setDeptKey:(NSString *)deptKey
          memberKey:(NSString *)memberKey
@@ -26,9 +29,9 @@ NS_ASSUME_NONNULL_BEGIN
            showNodes:(NSMutableArray<YFDynamicTreeNode_New *> * __nonnull)showNodes ;
 
 ///已经选择的member对应的model
-+ (NSArray *)selectedMemberModelsFromTreeNodes:(NSArray<YFDynamicTreeNode_New *> *)nodes ;
++ (NSMutableArray *)selectedMemberModelsFromTreeNodes:(NSArray<YFDynamicTreeNode_New *> *)nodes ;
 ///所有的子member(成员)对应的model
-+ (NSArray *)memberModelsFromTreeNodes:(NSArray<YFDynamicTreeNode_New *> *)nodes ;
++ (NSMutableArray *)memberModelsFromTreeNodes:(NSArray<YFDynamicTreeNode_New *> *)nodes ;
 
 @end
 

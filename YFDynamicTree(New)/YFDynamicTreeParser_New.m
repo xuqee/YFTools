@@ -17,9 +17,6 @@
     Class _memberModelCls ;
 }
 
-@property (nonatomic, strong)   NSMutableArray *treeNodes ;
-@property (nonatomic, strong)   NSMutableArray *showNodes ;
-
 @end
 
 @implementation YFDynamicTreeParser_New
@@ -33,7 +30,7 @@
     return self ;
 }
 
-+ (NSArray *)selectedMemberModelsFromTreeNodes:(NSArray<YFDynamicTreeNode_New *> *)nodes{
++ (NSMutableArray *)selectedMemberModelsFromTreeNodes:(NSArray<YFDynamicTreeNode_New *> *)nodes{
     __block  NSMutableArray *models = [NSMutableArray array] ;
     [nodes enumerateObjectsUsingBlock:^(YFDynamicTreeNode_New * _Nonnull node, NSUInteger idx, BOOL * _Nonnull stop) {
         if (!node.isDepartment && node.isSelected) {
