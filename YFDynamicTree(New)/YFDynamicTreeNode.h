@@ -1,5 +1,5 @@
 //
-//  YFDynamicTreeNode_New.h
+//  YFDynamicTreeNode.h
 //  YFTools
 //
 //  Created by yf on 2019/12/13.
@@ -10,10 +10,11 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface YFDynamicTreeNode_New : NSObject
+@interface YFDynamicTreeNode : NSObject
 
 @property (nonatomic, copy)     NSString *nodeId ;
 @property (nonatomic, copy)     NSString *name ;
+@property (nonatomic, copy)     NSString *pinyinName ;
 @property (nonatomic, strong)   id  data ;
 @property (nonatomic, assign)   NSInteger   level ;
 
@@ -22,7 +23,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, assign)   NSString *fatherNodeName ;
 
 ///下一级子节点 例如 自己为N级 下一级为N+1
-@property (nonatomic, strong,nullable)   NSMutableArray<YFDynamicTreeNode_New *> *nextLevelNodes;
+@property (nonatomic, strong,nullable)   NSMutableArray<YFDynamicTreeNode *> *nextLevelNodes;
 
 ///所有下级的成员 /N ------ N+M ，并非N --- N+1/
 @property (nonatomic, assign)   NSInteger     subMemberCount ;

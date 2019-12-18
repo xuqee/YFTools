@@ -119,7 +119,7 @@ static NSString *const kYFEXCELCellIdentify = @"com.YF.EXCEL.Cell" ;
                 make.width.height.equalTo(cell);
             }];
         }
-        label.text = [NSString stringWithFormat:@"%d",indexPath.row+1];
+        label.text = [NSString stringWithFormat:@"%ld",indexPath.row+1];
         return cell ;
     }
 }

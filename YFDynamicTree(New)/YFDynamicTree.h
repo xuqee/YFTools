@@ -1,5 +1,5 @@
 //
-//  YFDynamicTree_New.h
+//  YFDynamicTree.h
 //  YFTools
 //
 //  Created by yf on 2019/12/13.
@@ -8,26 +8,26 @@
 
 #import <UIKit/UIKit.h>
 
-#import "YFDynamicTreeNode_New.h"
- #import "YFDynamicTreeCell_New.h"
+#import "YFDynamicTreeNode.h"
+ #import "YFDynamicTreeCell.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 
-@class YFDynamicTree_New ;
+@class YFDynamicTree ;
 
 
 @protocol YFDynamicTreeDelegate <NSObject>
 
 @optional
 
-- (void)dynamicTree:(YFDynamicTree_New *)tree selectCellWithNode:(YFDynamicTreeNode_New *)node ;
+- (void)dynamicTree:(YFDynamicTree *)tree selectCellWithNode:(YFDynamicTreeNode *)node ;
 
 - (void)dynamicTreeSelectedNodesFinished ;
 
 @end
 
-@interface YFDynamicTree_New : UIView
+@interface YFDynamicTree : UIView
 
 ///最大选择数量
 @property (nonatomic, assign)   NSInteger maxSelectCount ;
@@ -36,8 +36,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, weak) id<YFDynamicTreeDelegate> delegate ;
 
-@property (nonatomic, strong)   NSMutableArray<YFDynamicTreeNode_New *> *treeNodes ;
-@property (nonatomic, strong)   NSMutableArray<YFDynamicTreeNode_New *> *showNodes ;
+@property (nonatomic, strong)   NSMutableArray<YFDynamicTreeNode *> *treeNodes ;
+@property (nonatomic, strong)   NSMutableArray<YFDynamicTreeNode *> *showNodes ;
 @property (nonatomic, strong)   NSMutableArray* selectedMembers ;
 
 
@@ -48,6 +48,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)registCellCls:(Class)cellCls reuseIdentify:(NSString *)identify;
 - (void)registCellNib:(UINib *)nib reuseIdentify:(NSString *)identify;
 
+- (void)reloadData ;
 
 @end
 

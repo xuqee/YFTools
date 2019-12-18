@@ -1,16 +1,16 @@
 //
-//  YFDynamicTree_New.m
+//  YFDynamicTree.m
 //  YFTools
 //
 //  Created by yf on 2019/12/13.
 //  Copyright © 2019 QYHB. All rights reserved.
 //
 
-#import "YFDynamicTree_New.h"
+#import "YFDynamicTree.h"
  
-#import "YFDynamicTreeParser_New.h"
+#import "YFDynamicTreeParser.h"
 
-@interface YFDynamicTree_New ()<UITableViewDelegate,UITableViewDataSource>
+@interface YFDynamicTree ()<UITableViewDelegate,UITableViewDataSource>
 
 @property (nonatomic, strong)   UITableView *tableView ;
 @property (nonatomic, strong)   NSArray     *rootNodes ;
@@ -18,7 +18,7 @@
 
 @end
 
-@implementation YFDynamicTree_New
+@implementation YFDynamicTree
 
  - (instancetype)init{
      self = [super init];
@@ -44,7 +44,7 @@
         return ;
     }
     _totalMemberCount = 0 ;
-    for (YFDynamicTreeNode_New *node in _showNodes) {
+    for (YFDynamicTreeNode *node in _showNodes) {
         _totalMemberCount += node.subMemberCount ;
     }
     if (_rootNodes.count < 5) {
@@ -53,10 +53,14 @@
     [self.tableView reloadData];
 }
 
+- (void)reloadData {
+    [self.tableView reloadData];
+}
+
 #pragma mark -- Private methods
-- (void)clickNode:(YFDynamicTreeNode_New *)node isSelected:(BOOL)isSelected {
+- (void)clickNode:(YFDynamicTreeNode *)node isSelected:(BOOL)isSelected {
     node.isSelected = isSelected ;
-    [node.nextLevelNodes enumerateObjectsUsingBlock:^(YFDynamicTreeNode_New * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+    [node.nextLevelNodes enumerateObjectsUsingBlock:^(YFDynamicTreeNode * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         if (![self.treeNodes containsObject:obj]) return ;
         [self clickNode:obj isSelected:isSelected];
     }];
@@ -64,18 +68,18 @@
  
 - (void)updateSelectedMemberCount{
     NSInteger totalSelectedMemberCount = 0 ;
-    for (YFDynamicTreeNode_New *node in _rootNodes) {
+    for (YFDynamicTreeNode *node in _rootNodes) {
         totalSelectedMemberCount += [self selectedMemberCountOfNode:node];
     }
     _selectedCount = totalSelectedMemberCount ;
 }
 
-- (NSInteger)selectedMemberCountOfNode:(YFDynamicTreeNode_New *)node{
+- (NSInteger)selectedMemberCountOfNode:(YFDynamicTreeNode *)node{
     __block NSInteger total = 0 ;
     if (![_treeNodes containsObject:node]) return 0 ;
     
     if (node.isDepartment) {
-        [node.nextLevelNodes enumerateObjectsUsingBlock:^(YFDynamicTreeNode_New * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        [node.nextLevelNodes enumerateObjectsUsingBlock:^(YFDynamicTreeNode * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
             total += [self selectedMemberCountOfNode:obj] ;
         }];
     }else{
@@ -86,8 +90,8 @@
     return total ;
 }
 
-- (void)minisShowNodeFromNode:(YFDynamicTreeNode_New *)node{
-    [node.nextLevelNodes enumerateObjectsUsingBlock:^(YFDynamicTreeNode_New * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+- (void)minisShowNodeFromNode:(YFDynamicTreeNode *)node{
+    [node.nextLevelNodes enumerateObjectsUsingBlock:^(YFDynamicTreeNode * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         if ([self.showNodes containsObject:obj]) {
              [self.showNodes removeObject:obj];
              [self minisShowNodeFromNode:obj];
@@ -96,9 +100,9 @@
     node.isOpen = NO ;
 }
 
-- (void)addSubNodesFromNode:(YFDynamicTreeNode_New *)node index:(NSInteger)index{
+- (void)addSubNodesFromNode:(YFDynamicTreeNode *)node index:(NSInteger)index{
     __block NSInteger row = index ;
-    [node.nextLevelNodes enumerateObjectsUsingBlock:^(YFDynamicTreeNode_New * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+    [node.nextLevelNodes enumerateObjectsUsingBlock:^(YFDynamicTreeNode * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         if ([self.treeNodes containsObject:obj]) {
             [self.showNodes insertObject:obj atIndex:++row];
         }
@@ -113,14 +117,14 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    YFDynamicTreeNode_New *node = _showNodes[indexPath.row] ;
+    YFDynamicTreeNode *node = _showNodes[indexPath.row] ;
     YFDynamicCellType_New type = node.isDepartment ? YFDynamicCellType_NEWBranch : YFDynamicCellType_NEWMember ;
-    return [YFDynamicTreeCell_New heightForCellWithType:type];
+    return [YFDynamicTreeCell heightForCellWithType:type];
 }
  
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    YFDynamicTreeCell_New *cell = [tableView dequeueReusableCellWithIdentifier:self.cellReuseIdentify] ;
-    YFDynamicTreeNode_New *node = _showNodes[indexPath.row] ;
+    YFDynamicTreeCell *cell = [tableView dequeueReusableCellWithIdentifier:self.cellReuseIdentify] ;
+    YFDynamicTreeNode *node = _showNodes[indexPath.row] ;
     [cell fillWithNode:node];
     cell.selectedBlock = ^{
         BOOL ret = !node.isSelected ;
@@ -136,7 +140,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    YFDynamicTreeNode_New *node = _showNodes[indexPath.row] ;
+    YFDynamicTreeNode *node = _showNodes[indexPath.row] ;
     if (node.isDepartment) {
         !node.isOpen ? [self addSubNodesFromNode:node index:indexPath.row ] :   [self minisShowNodeFromNode:node] ;
     }else{
@@ -148,7 +152,7 @@
 }
 
 - (BOOL)tableView:(UITableView *)tableView shouldHighlightRowAtIndexPath:(NSIndexPath *)indexPath{
-    YFDynamicTreeNode_New *node = _showNodes[indexPath.row] ;
+    YFDynamicTreeNode *node = _showNodes[indexPath.row] ;
     if (_rootNodes.count < 5 && [_rootNodes containsObject:node] && node.isOpen == YES) {
         return NO ;
     }
@@ -176,7 +180,7 @@
 #pragma mark --  Lazy
 
 - (NSMutableArray *)selectedMembers{
-    return [YFDynamicTreeParser_New selectedMemberModelsFromTreeNodes:self.treeNodes];
+    return [YFDynamicTreeParser selectedMemberModelsFromTreeNodes:self.treeNodes];
 }
 
 - (UITableView *)tableView{

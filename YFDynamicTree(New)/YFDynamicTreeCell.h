@@ -2,26 +2,28 @@
 //  YFDynamicTreeCell.h
 //  YFTools
 //
-//  Created by yf on 2019/11/26.
+//  Created by yf on 2019/12/13.
 //  Copyright © 2019 QYHB. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
 
-@class YFDynamicTreeNode ;
 
 static NSString * _Nonnull const kYFDynamicTreeCellIdentify = @"YFDynamicTreeCell" ;
 
 typedef enum {
-    YFDynamicCellTypeBranch = 1, //目录
-    YFDynamicCellTypeMember   //雇员
-}YFDynamicCellType ;
+    YFDynamicCellType_NEWBranch = 1, //目录
+    YFDynamicCellType_NEWMember   //雇员
+}YFDynamicCellType_New ;
+
 
 NS_ASSUME_NONNULL_BEGIN
 
+@class YFDynamicTreeNode ;
+
 @interface YFDynamicTreeCell : UITableViewCell
 
-+ (CGFloat)heightForCellWithType:(YFDynamicCellType)type;
++ (CGFloat)heightForCellWithType:(YFDynamicCellType_New )type;
 
 - (void)fillWithNode:(YFDynamicTreeNode*)node ;
 

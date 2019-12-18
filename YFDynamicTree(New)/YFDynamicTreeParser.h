@@ -1,5 +1,5 @@
 //
-//  YFDynamicTreeParser_New.h
+//  YFDynamicTreeParser.h
 //  YFTools
 //
 //  Created by yf on 2019/12/13.
@@ -7,11 +7,11 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "YFDynamicTreeNode_New.h"
+#import "YFDynamicTreeNode.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface YFDynamicTreeParser_New : NSObject
+@interface YFDynamicTreeParser : NSObject
 
 @property (nonatomic, strong)   NSMutableArray *treeNodes ;
 @property (nonatomic, strong)   NSMutableArray *showNodes ;
@@ -25,13 +25,13 @@ NS_ASSUME_NONNULL_BEGIN
     memberModelCls:(Class )memberModelCls ;
 
 - (void)generateData:(NSArray *)datas
-           treeNodes:(NSMutableArray<YFDynamicTreeNode_New *> * __nonnull)treeNodes
-           showNodes:(NSMutableArray<YFDynamicTreeNode_New *> * __nonnull)showNodes ;
+           treeNodes:(NSMutableArray<YFDynamicTreeNode *> * __nonnull)treeNodes
+           showNodes:(NSMutableArray<YFDynamicTreeNode *> * __nonnull)showNodes ;
 
 ///已经选择的member对应的model
-+ (NSMutableArray *)selectedMemberModelsFromTreeNodes:(NSArray<YFDynamicTreeNode_New *> *)nodes ;
++ (NSMutableArray *)selectedMemberModelsFromTreeNodes:(NSArray<YFDynamicTreeNode *> *)nodes ;
 ///所有的子member(成员)对应的model
-+ (NSMutableArray *)memberModelsFromTreeNodes:(NSArray<YFDynamicTreeNode_New *> *)nodes ;
++ (NSMutableArray *)memberModelsFromTreeNodes:(NSArray<YFDynamicTreeNode *> *)nodes ;
 
 @end
 

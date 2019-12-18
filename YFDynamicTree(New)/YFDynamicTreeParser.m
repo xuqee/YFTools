@@ -1,14 +1,14 @@
 //
-//  YFDynamicTreeParser_New.m
+//  YFDynamicTreeParser.m
 //  YFTools
 //
 //  Created by yf on 2019/12/13.
 //  Copyright © 2019 QYHB. All rights reserved.
 //
 
-#import "YFDynamicTreeParser_New.h"
-
-@interface YFDynamicTreeParser_New (){
+#import "YFDynamicTreeParser.h"
+#import "NSString+PinYin.h"
+@interface YFDynamicTreeParser (){
     NSString *_deptNameKey ;
     NSString *_memberNameKey ;
     NSString *_deptKey ;
@@ -19,7 +19,7 @@
 
 @end
 
-@implementation YFDynamicTreeParser_New
+@implementation YFDynamicTreeParser
 
 - (instancetype)init{
     self = [super init ] ;
@@ -30,9 +30,9 @@
     return self ;
 }
 
-+ (NSMutableArray *)selectedMemberModelsFromTreeNodes:(NSArray<YFDynamicTreeNode_New *> *)nodes{
++ (NSMutableArray *)selectedMemberModelsFromTreeNodes:(NSArray<YFDynamicTreeNode *> *)nodes{
     __block  NSMutableArray *models = [NSMutableArray array] ;
-    [nodes enumerateObjectsUsingBlock:^(YFDynamicTreeNode_New * _Nonnull node, NSUInteger idx, BOOL * _Nonnull stop) {
+    [nodes enumerateObjectsUsingBlock:^(YFDynamicTreeNode * _Nonnull node, NSUInteger idx, BOOL * _Nonnull stop) {
         if (!node.isDepartment && node.isSelected) {
             [models addObject:node.data] ;
         }
@@ -42,9 +42,9 @@
 
 
 ///选择所有的子member(成员)对应的model
-+ (NSArray *)memberModelsFromTreeNodes:(NSArray<YFDynamicTreeNode_New *> *)nodes{
++ (NSArray *)memberModelsFromTreeNodes:(NSArray<YFDynamicTreeNode *> *)nodes{
     __block  NSMutableArray *models = [NSMutableArray array] ;
-    [nodes enumerateObjectsUsingBlock:^(YFDynamicTreeNode_New * _Nonnull node, NSUInteger idx, BOOL * _Nonnull stop) {
+    [nodes enumerateObjectsUsingBlock:^(YFDynamicTreeNode * _Nonnull node, NSUInteger idx, BOOL * _Nonnull stop) {
         if (!node.isDepartment) {
             [models addObject:node.data] ;
         }
@@ -55,8 +55,8 @@
 #pragma mark -- 解析node
 
 - (void)generateData:(NSArray *)datas
-           treeNodes:(NSMutableArray<YFDynamicTreeNode_New *> * __nonnull)treeNodes
-           showNodes:(NSMutableArray<YFDynamicTreeNode_New *> * __nonnull)showNodes {
+           treeNodes:(NSMutableArray<YFDynamicTreeNode *> * __nonnull)treeNodes
+           showNodes:(NSMutableArray<YFDynamicTreeNode *> * __nonnull)showNodes {
    
     self.treeNodes = treeNodes  ;
     self.showNodes = showNodes  ;
@@ -75,7 +75,7 @@
             [self parserDic:dic fatherID:nil fatherName:nil level:0  ];
         }
     }
-    for (YFDynamicTreeNode_New *node in _showNodes) {
+    for (YFDynamicTreeNode *node in _showNodes) {
         @autoreleasepool {
             [self parseTotalCountOfSubMembersInNode:node];
         }
@@ -91,9 +91,9 @@
 @param   level dic的层级
 @return node
 */
-- (YFDynamicTreeNode_New *)parserDic:(NSDictionary *)dic  fatherID:(NSString *)fatherID fatherName:(NSString *)fatherName level:(NSInteger )level {
+- (YFDynamicTreeNode *)parserDic:(NSDictionary *)dic  fatherID:(NSString *)fatherID fatherName:(NSString *)fatherName level:(NSInteger )level {
     
-    YFDynamicTreeNode_New *node = [[YFDynamicTreeNode_New alloc] init];
+    YFDynamicTreeNode *node = [[YFDynamicTreeNode alloc] init];
     @synchronized (self) {
         
         if (!isEmptyStr(dic[_deptNameKey])) { //分支
@@ -112,13 +112,13 @@
             //解析子node
             NSArray *members = [NSArray arrayWithArray:dic[_memberKey]];
             [members enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-                YFDynamicTreeNode_New *subNode = [self parserDic:obj fatherID:node.nodeId fatherName:node.name level:(level+1) ];
+                YFDynamicTreeNode *subNode = [self parserDic:obj fatherID:node.nodeId fatherName:node.name level:(level+1) ];
                 [node.nextLevelNodes addObject:subNode];
             }];
             
             NSArray *subDeparts = [NSArray arrayWithArray:dic[_deptKey]];
             [subDeparts enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-                YFDynamicTreeNode_New *subNode =
+                YFDynamicTreeNode *subNode =
                 [self parserDic:obj fatherID:node.nodeId fatherName:node.name level:level+1  ];
                 [node.nextLevelNodes addObject:subNode];
             }];
@@ -146,12 +146,13 @@
             [_showNodes addObject:node];
         }
     }
+    node.pinyinName = isEmptyStr(node.name) ? @"":[[NSString transformToPinyin:node.name] lowercaseString];
     return node ;
 }
 
 ///计算各个子节点的员工数量
-- (NSInteger )parseTotalCountOfSubMembersInNode:(YFDynamicTreeNode_New *)node{
-    [node.nextLevelNodes enumerateObjectsUsingBlock:^(YFDynamicTreeNode_New *obj, NSUInteger idx, BOOL * _Nonnull stop) {
+- (NSInteger )parseTotalCountOfSubMembersInNode:(YFDynamicTreeNode *)node{
+    [node.nextLevelNodes enumerateObjectsUsingBlock:^(YFDynamicTreeNode *obj, NSUInteger idx, BOOL * _Nonnull stop) {
         if ([_treeNodes containsObject:obj] ) {
             if (obj.isDepartment) {
                 NSInteger i = [self parseTotalCountOfSubMembersInNode:obj] ;

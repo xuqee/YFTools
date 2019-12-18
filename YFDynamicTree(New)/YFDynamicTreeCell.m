@@ -1,19 +1,19 @@
 //
-//  YFDynamicTreeCell_New.m
+//  YFDynamicTreeCell.m
 //  YFTools
 //
 //  Created by yf on 2019/12/13.
 //  Copyright © 2019 QYHB. All rights reserved.
 //
 
-#import "YFDynamicTreeCell_New.h"
-#import "YFDynamicTreeNode_New.h"
+#import "YFDynamicTreeCell.h"
+#import "YFDynamicTreeNode.h"
 
 
 #define kBranchCellHeight 44
 #define kMemberCellHeight  49
 
-@implementation YFDynamicTreeCell_New
+@implementation YFDynamicTreeCell
 
 - (void)awakeFromNib {
     [super awakeFromNib];
@@ -31,7 +31,7 @@
     _selectedBlock ? _selectedBlock() : nil ;
 }
 
-- (void)fillWithNode:(YFDynamicTreeNode_New*)node {
+- (void)fillWithNode:(YFDynamicTreeNode*)node {
     
 }
 
