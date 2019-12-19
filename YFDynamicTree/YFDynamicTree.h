@@ -49,6 +49,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)registCellNib:(UINib *)nib reuseIdentify:(NSString *)identify;
 
 - (void)reloadData ;
+- (void)selectedNode:(YFDynamicTreeNode *)node ;
 
 @end
 

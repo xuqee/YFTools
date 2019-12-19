@@ -57,6 +57,17 @@
     [self.tableView reloadData];
 }
 
+- (void)selectedNode:(YFDynamicTreeNode *)node{
+    BOOL ret = !node.isSelected ;
+    [self clickNode:node isSelected:ret]; //子nod
+    [self updateSelectedMemberCount ];
+    [self.tableView reloadData];
+    if (self.delegate && [self.delegate respondsToSelector:@selector(dynamicTreeSelectedNodesFinished)]) {
+        [self.delegate dynamicTreeSelectedNodesFinished];
+    }
+}
+
+
 #pragma mark -- Private methods
 - (void)clickNode:(YFDynamicTreeNode *)node isSelected:(BOOL)isSelected {
     node.isSelected = isSelected ;
@@ -127,13 +138,7 @@
     YFDynamicTreeNode *node = _showNodes[indexPath.row] ;
     [cell fillWithNode:node];
     cell.selectedBlock = ^{
-        BOOL ret = !node.isSelected ;
-        [self clickNode:node isSelected:ret]; //子nod
-        [self updateSelectedMemberCount ];
-        [self.tableView reloadData];
-        if (self.delegate && [self.delegate respondsToSelector:@selector(dynamicTreeSelectedNodesFinished)]) {
-            [self.delegate dynamicTreeSelectedNodesFinished];
-        }
+        [self selectedNode:node];
     };
     return cell ;
 }

@@ -77,8 +77,16 @@ static NSString *const kYFEXCELCellIdentify = @"com.YF.EXCEL.Cell" ;
         }
     }];
     self.lineItemSizes = [YFExcelGridView itemSizesForStrs:longestDatas];
+    
+    [self removeAllSubviews];
+    _indexTableView = nil ;
+    _container = nil ;
+    _tableView = nil ;
+    _scrollView = nil ;
+    
     [self indexTableView];
     [self scrollView];
+    [self container];
     [self tableView];
 }
 
@@ -129,14 +137,17 @@ static NSString *const kYFEXCELCellIdentify = @"com.YF.EXCEL.Cell" ;
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
-    UIView *header ;
+    
+    UIView *header = [[UIView alloc] init];
+    header.backgroundColor = [UIColor whiteColor];;
     if (tableView == _tableView) {
         YFExcelGridView *grid = [[YFExcelGridView alloc] init];
         [grid setContents:_titles itemSizes:_lineItemSizes];
-        header = grid ;
-    }else{
-        header = [[UIView alloc] init];
-        header.backgroundColor = [UIColor whiteColor];
+        [header addSubview:grid] ;
+        [grid mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.top.right.left.equalTo(header);
+            make.bottom.equalTo(header.mas_bottom).offset(-1);
+        }];
     }
     UIView *sep = [[UIView alloc] init];
     sep.backgroundColor = [UIColor groupTableViewBackgroundColor];
@@ -184,10 +195,12 @@ static NSString *const kYFEXCELCellIdentify = @"com.YF.EXCEL.Cell" ;
             make.width.equalTo(@(kIndexCellWidth));
         }];
     }
+    [_indexTableView reloadData];
     return _indexTableView ;
 }
 
 - (UIScrollView *)scrollView{
+
     if (!_scrollView) {
         _scrollView = [[UIScrollView alloc] init];
         _scrollView.showsVerticalScrollIndicator = YES ;
@@ -198,20 +211,27 @@ static NSString *const kYFEXCELCellIdentify = @"com.YF.EXCEL.Cell" ;
             make.left.equalTo(@(kIndexCellWidth+1));
             make.top.bottom.right.equalTo(self);
         }];
-        
-        CGFloat width = _lineItemSizes.count*.5 ;
-        for (NSString *sizeStr in _lineItemSizes) {
-            width += CGSizeFromString(sizeStr).width ;
-        }
+        [_scrollView addSubview:self.container];
+    }
+
+    return _scrollView ;
+}
+
+- (UIView *)container{
+    if (!_container) {
         _container = [[UIView alloc] init ];
         [_scrollView addSubview:_container];
-        [_container mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.edges.equalTo(self.scrollView);
-            make.width.equalTo(@(width));
-            make.height.equalTo(self.scrollView);
-        }];
     }
-    return _scrollView ;
+    CGFloat width = _lineItemSizes.count*.5 ;
+    for (NSString *sizeStr in _lineItemSizes) {
+        width += CGSizeFromString(sizeStr).width ;
+    }
+    [_container mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.edges.equalTo(self.scrollView);
+        make.width.equalTo(@(width));
+        make.height.equalTo(self.scrollView);
+    }];
+    return _container ;
 }
 
 - (UITableView *)tableView{
@@ -229,6 +249,7 @@ static NSString *const kYFEXCELCellIdentify = @"com.YF.EXCEL.Cell" ;
             make.edges.equalTo(self.container);
         }];
     }
+    [_tableView reloadData];
     return _tableView ;
 }
 

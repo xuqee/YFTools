@@ -84,7 +84,7 @@ static NSString *const kYFExcelGridCellIdentify = @"com.YF.Excel.GridCell" ;
     NSMutableArray *itemSizes = [NSMutableArray arrayWithCapacity:strs.count];
     for (NSString *str in strs) {
         CGFloat width = [str boundingRectWithSize:CGSizeMake(CGFLOAT_MAX, 20) options:NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:14]} context:nil].size.width ;
-        CGSize size = width>150 ? CGSizeMake(width/2.+12, 40) : CGSizeMake(width+12, 40);
+        CGSize size = width>100 ? CGSizeMake(width/2.+12, 40) : CGSizeMake(width+12, 40);
         [itemSizes addObject:NSStringFromCGSize(size)];
     }
     return itemSizes ;

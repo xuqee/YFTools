@@ -128,7 +128,7 @@
 			path = YFBMKMapViewCtrl;
 			sourceTree = "<group>";
 		};
-		B833E01C23A36ED400933DFB /* YFDynamicTree(New) */ = {
+		B833E01C23A36ED400933DFB /* YFDynamicTree */ = {
 			isa = PBXGroup;
 			children = (
 				B833E02323A3834400933DFB /* YFDynamicTree.h */,
@@ -140,7 +140,7 @@
 				B833E02023A36F2A00933DFB /* YFDynamicTreeParser.h */,
 				B833E02123A36F2A00933DFB /* YFDynamicTreeParser.m */,
 			);
-			path = "YFDynamicTree(New)";
+			path = YFDynamicTree;
 			sourceTree = "<group>";
 		};
 		B855DB21239DF95C00A3CA7D /* YFRouteNaviHelper */ = {
@@ -274,7 +274,7 @@
 				B894DB182387B59D00C1516A /* YFDefine.h */,
 				B894DB172387AFE600C1516A /* YFMethodMacro.h */,
 				B8B10A39238B7691006C6F56 /* YFDescriptionMacro.h */,
-				B833E01C23A36ED400933DFB /* YFDynamicTree(New) */,
+				B833E01C23A36ED400933DFB /* YFDynamicTree */,
 				B8AF2A3E23A22D5E00B1A574 /* YFEXCEL */,
 				B855DB21239DF95C00A3CA7D /* YFRouteNaviHelper */,
 				B8BA3B5A239A40BF00EADBB9 /* YFDatePicker */,
