@@ -80,7 +80,6 @@
 }
 
 
-
 #pragma  mark -- BMKGeoCodeSearchDelegate
 - (void)onGetReverseGeoCodeResult:(BMKGeoCodeSearch *)searcher result:(BMKReverseGeoCodeSearchResult *)result errorCode:(BMKSearchErrorCode)error{
     //do something
