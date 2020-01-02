@@ -33,6 +33,7 @@
 		B8BA3B5D239A40BF00EADBB9 /* YFDatePickerContainer.m in Sources */ = {isa = PBXBuildFile; fileRef = B8BA3B5B239A40BF00EADBB9 /* YFDatePickerContainer.m */; };
 		B8BC1CDF23975654009C6DE9 /* YFNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = B8BC1CDE23975654009C6DE9 /* YFNavigationController.m */; };
 		B8C2BD38238FBFB600A167CB /* YFBMKGeoCodeReverseManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B8C2BD37238FBFB600A167CB /* YFBMKGeoCodeReverseManager.m */; };
+		DEA6494123BD8BF0001C2CA3 /* YFUmengCrashHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = DEA6494023BD8BF0001C2CA3 /* YFUmengCrashHelper.m */; };
 		DEAEDC6D23B9D82D000BC94B /* YFDeviceInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = DEAEDC6C23B9D82D000BC94B /* YFDeviceInfo.m */; };
 		DEC401CB23BAF87300C853EB /* YFCollectionViewFlowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = DEC401CA23BAF87300C853EB /* YFCollectionViewFlowLayout.m */; };
 /* End PBXBuildFile section */
@@ -107,6 +108,8 @@
 		B8C2BD36238FBFB600A167CB /* YFBMKGeoCodeReverseManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YFBMKGeoCodeReverseManager.h; sourceTree = "<group>"; };
 		B8C2BD37238FBFB600A167CB /* YFBMKGeoCodeReverseManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YFBMKGeoCodeReverseManager.m; sourceTree = "<group>"; };
 		B8EBEA26239760AC00C31573 /* YF.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = YF.xcassets; sourceTree = "<group>"; };
+		DEA6493F23BD8BF0001C2CA3 /* YFUmengCrashHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YFUmengCrashHelper.h; sourceTree = "<group>"; };
+		DEA6494023BD8BF0001C2CA3 /* YFUmengCrashHelper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YFUmengCrashHelper.m; sourceTree = "<group>"; };
 		DEAEDC6B23B9D82D000BC94B /* YFDeviceInfo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YFDeviceInfo.h; sourceTree = "<group>"; };
 		DEAEDC6C23B9D82D000BC94B /* YFDeviceInfo.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YFDeviceInfo.m; sourceTree = "<group>"; };
 		DEC401C923BAF87300C853EB /* YFCollectionViewFlowLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YFCollectionViewFlowLayout.h; sourceTree = "<group>"; };
@@ -345,6 +348,15 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		DEA6493E23BD8BA3001C2CA3 /* YFUMengCrashReport(友盟统计) */ = {
+			isa = PBXGroup;
+			children = (
+				DEA6493F23BD8BF0001C2CA3 /* YFUmengCrashHelper.h */,
+				DEA6494023BD8BF0001C2CA3 /* YFUmengCrashHelper.m */,
+			);
+			path = "YFUMengCrashReport(友盟统计)";
+			sourceTree = "<group>";
+		};
 		DEAEDC6723B9D569000BC94B /* Modul */ = {
 			isa = PBXGroup;
 			children = (
@@ -365,6 +377,7 @@
 		DEAEDC6923B9D581000BC94B /* Tools */ = {
 			isa = PBXGroup;
 			children = (
+				DEA6493E23BD8BA3001C2CA3 /* YFUMengCrashReport(友盟统计) */,
 				B8A071472383F59100DE2F93 /* YFBaseViewController */,
 				B894DB192387B67700C1516A /* YFAppInfo(App信息) */,
 				DEAEDC6A23B9D809000BC94B /* YFDeviceInfo(设备信息) */,
@@ -503,6 +516,7 @@
 				B894DB322387BEB200C1516A /* NSData+FormData.m in Sources */,
 				B894DB1123878AB800C1516A /* YFCherkFormat.m in Sources */,
 				B894DB3C2387E01700C1516A /* YFNetWorkingCacheManager.m in Sources */,
+				DEA6494123BD8BF0001C2CA3 /* YFUmengCrashHelper.m in Sources */,
 				B894DB302387BEB200C1516A /* NSArray+LocaleLog.m in Sources */,
 				B855DB24239DF95C00A3CA7D /* YFRouteNaviHelper.m in Sources */,
 				B8BC1CDF23975654009C6DE9 /* YFNavigationController.m in Sources */,
