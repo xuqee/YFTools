@@ -10,6 +10,10 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+#define kSepLineWidth  2
+#define kSepLineColor  [UIColor blackColor]
+
+
 @interface YFExcelGridView : UICollectionView
 
 

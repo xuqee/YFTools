@@ -7,6 +7,7 @@
 //
 
 #import "YFExcelGridView.h"
+#import "YFCollectionViewFlowLayout.h"
 
 static NSString *const kYFExcelGridCellIdentify = @"com.YF.Excel.GridCell" ;
 
@@ -20,20 +21,18 @@ static NSString *const kYFExcelGridCellIdentify = @"com.YF.Excel.GridCell" ;
 @implementation YFExcelGridView
 
 - (instancetype)init{
-    UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
+    YFCollectionViewFlowLayout *flowLayout = [[YFCollectionViewFlowLayout alloc] init];
     flowLayout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
-    flowLayout.minimumInteritemSpacing = .5;
-//    flowLayout.minimumLineSpacing = 0;
+    flowLayout.minimumInteritemSpacing = kSepLineWidth;
     self = [super initWithFrame:CGRectZero collectionViewLayout:flowLayout];
     if (self ) {
         self.showsVerticalScrollIndicator = NO;
         self.showsHorizontalScrollIndicator=YES;
         self.bounces = NO;
-        self.backgroundColor = [UIColor whiteColor];
         [self registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:kYFExcelGridCellIdentify];
         self.delegate = self ;
         self.dataSource = self ;
-        self.backgroundColor = [UIColor groupTableViewBackgroundColor];
+        self.backgroundColor = kSepLineColor;
     }
     return self ;
 }
@@ -84,10 +83,25 @@ static NSString *const kYFExcelGridCellIdentify = @"com.YF.Excel.GridCell" ;
     NSMutableArray *itemSizes = [NSMutableArray arrayWithCapacity:strs.count];
     for (NSString *str in strs) {
         CGFloat width = [str boundingRectWithSize:CGSizeMake(CGFLOAT_MAX, 20) options:NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:14]} context:nil].size.width ;
-        CGSize size = width>100 ? CGSizeMake(width/2.+12, 40) : CGSizeMake(width+12, 40);
+        /*****注意取整，否则会出现某个间隔线很粗的情况*****/
+        /*****因为在计算frame的时候，origin都会以0.5或者1开头，最后导致有的线是1 有的线粗度是2****/
+        NSInteger iWidth = (NSInteger)(width>100 ? width/2.+12  : width+12) ;
+        CGSize size =  CGSizeMake(iWidth, 40);
         [itemSizes addObject:NSStringFromCGSize(size)];
     }
     return itemSizes ;
+}
+
+////多种手势处理
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch {
+    
+    if ([NSStringFromClass([touch.view class]) isEqualToString:@"UITableViewCellContentView"]) {
+        return NO;
+    }
+    if ([[gestureRecognizer class] isKindOfClass:[UILongPressGestureRecognizer class]]) {
+        return NO ;
+    }
+    return YES;
 }
 
 

@@ -14,6 +14,7 @@
 #define kIndexCellWidth  49
 #define kDefaultCellHeight 40
 
+
 static NSString *const kYFEXCELIndexCellIdentify = @"com.YF.EXCEL.IndexCell" ;
 static NSString *const kYFEXCELCellIdentify = @"com.YF.EXCEL.Cell" ;
 
@@ -111,6 +112,19 @@ static NSString *const kYFEXCELCellIdentify = @"com.YF.EXCEL.Cell" ;
             if (value) [values addObject:value];
         }
         [cell.gridView setContents:values itemSizes:self.lineItemSizes];
+        
+        UIView  *hSep  = [cell viewWithTag:3010];
+        if (!hSep) {
+            hSep = [[UIView alloc] init ];
+            hSep.tag = 3010 ;
+            hSep.backgroundColor = kSepLineColor;
+            [cell.contentView addSubview:hSep];
+            [hSep mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.left.bottom.right.equalTo(cell.contentView);
+                make.height.equalTo(@(kSepLineWidth));
+            }];
+        }
+        
         return cell ;
     }else{
         UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kYFEXCELIndexCellIdentify ];
@@ -127,7 +141,31 @@ static NSString *const kYFEXCELCellIdentify = @"com.YF.EXCEL.Cell" ;
                 make.width.height.equalTo(cell);
             }];
         }
-        label.text = [NSString stringWithFormat:@"%ld",indexPath.row+1];
+        label.text = [NSString stringWithFormat:@"%zd", (NSInteger)(indexPath.row+1)];
+       
+        UIView  *vSep  = [cell viewWithTag:3009];
+        if (!vSep) {
+            vSep = [[UIView alloc] init ];
+            vSep.tag = 3009 ;
+            vSep.backgroundColor = kSepLineColor;
+            [cell.contentView addSubview:vSep];
+            [vSep mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.top.bottom.right.equalTo(cell.contentView);
+                make.width.equalTo(@(kSepLineWidth));
+            }];
+        }
+        
+        UIView  *hSep  = [cell viewWithTag:3010];
+        if (!hSep) {
+            hSep = [[UIView alloc] init ];
+            hSep.tag = 3010 ;
+            hSep.backgroundColor = kSepLineColor;
+            [cell.contentView addSubview:hSep];
+            [hSep mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.left.bottom.right.equalTo(cell.contentView);
+                make.height.equalTo(@(kSepLineWidth));
+            }];
+        }
         return cell ;
     }
 }
@@ -139,23 +177,45 @@ static NSString *const kYFEXCELCellIdentify = @"com.YF.EXCEL.Cell" ;
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
     
     UIView *header = [[UIView alloc] init];
-    header.backgroundColor = [UIColor whiteColor];;
+    header.backgroundColor = [UIColor whiteColor];
     if (tableView == _tableView) {
         YFExcelGridView *grid = [[YFExcelGridView alloc] init];
         [grid setContents:_titles itemSizes:_lineItemSizes];
         [header addSubview:grid] ;
         [grid mas_makeConstraints:^(MASConstraintMaker *make) {
             make.top.right.left.equalTo(header);
-            make.bottom.equalTo(header.mas_bottom).offset(-1);
+            make.bottom.equalTo(header.mas_bottom);
+        }];
+    }else{
+        UIView  *vSep = [[UIView alloc] init ];
+        vSep.backgroundColor = kSepLineColor;
+        [header addSubview:vSep];
+        [vSep mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.top.bottom.right.equalTo(header);
+            make.width.equalTo(@(kSepLineWidth));
         }];
     }
-    UIView *sep = [[UIView alloc] init];
-    sep.backgroundColor = [UIColor groupTableViewBackgroundColor];
-    [header addSubview:sep];
-    [sep mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.right.bottom.equalTo(header);
-        make.height.equalTo(@1);
+    
+    UIView *upSep = [[UIView alloc] init];
+    upSep.backgroundColor = kSepLineColor;
+    [header addSubview:upSep];
+    
+    UIView *downSep = [[UIView alloc] init];
+    downSep.backgroundColor = kSepLineColor;
+    [header addSubview:downSep];
+
+    [upSep mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.right.left.equalTo(header);
+        make.height.equalTo(@(kSepLineWidth));
     }];
+    [downSep mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.right.bottom.equalTo(header);
+        make.height.equalTo(@(kSepLineWidth));
+    }];
+     
+    
+
+    
     return header ;
 }
 
@@ -182,8 +242,7 @@ static NSString *const kYFEXCELCellIdentify = @"com.YF.EXCEL.Cell" ;
 - (UITableView *)indexTableView{
     if (!_indexTableView) {
         _indexTableView = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain];
-        _indexTableView.separatorColor = [UIColor groupTableViewBackgroundColor];
-        _indexTableView.separatorInset = UIEdgeInsetsMake(0, 0, 0, 0);
+        _indexTableView.separatorStyle = UITableViewCellSeparatorStyleNone ;
         [_indexTableView registerClass:[UITableViewCell class] forCellReuseIdentifier:kYFEXCELIndexCellIdentify ];
         _indexTableView.delegate = self ;
         _indexTableView.dataSource = self ;
@@ -208,12 +267,11 @@ static NSString *const kYFEXCELCellIdentify = @"com.YF.EXCEL.Cell" ;
         _scrollView.bounces = NO ;
         [self addSubview:_scrollView];
         [_scrollView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.left.equalTo(@(kIndexCellWidth+1));
+            make.left.equalTo(self.indexTableView.mas_right);
             make.top.bottom.right.equalTo(self);
         }];
         [_scrollView addSubview:self.container];
     }
-
     return _scrollView ;
 }
 
@@ -222,7 +280,7 @@ static NSString *const kYFEXCELCellIdentify = @"com.YF.EXCEL.Cell" ;
         _container = [[UIView alloc] init ];
         [_scrollView addSubview:_container];
     }
-    CGFloat width = _lineItemSizes.count*.5 ;
+    CGFloat width = (_lineItemSizes.count-1)*kSepLineWidth ;
     for (NSString *sizeStr in _lineItemSizes) {
         width += CGSizeFromString(sizeStr).width ;
     }
@@ -237,8 +295,7 @@ static NSString *const kYFEXCELCellIdentify = @"com.YF.EXCEL.Cell" ;
 - (UITableView *)tableView{
     if (!_tableView) {
         _tableView = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain];
-        _tableView.separatorColor = [UIColor groupTableViewBackgroundColor];
-        _tableView.separatorInset = UIEdgeInsetsMake(0, 0, 0, 0);
+        _tableView.separatorStyle = UITableViewCellSeparatorStyleNone ;
         _tableView.bounces = NO ;
         [_tableView registerClass:[YFExcellistCell class] forCellReuseIdentifier:kYFEXCELCellIdentify ];
         _tableView.delegate = self ;

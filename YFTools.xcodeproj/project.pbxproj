@@ -34,6 +34,7 @@
 		B8BC1CDF23975654009C6DE9 /* YFNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = B8BC1CDE23975654009C6DE9 /* YFNavigationController.m */; };
 		B8C2BD38238FBFB600A167CB /* YFBMKGeoCodeReverseManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B8C2BD37238FBFB600A167CB /* YFBMKGeoCodeReverseManager.m */; };
 		DEAEDC6D23B9D82D000BC94B /* YFDeviceInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = DEAEDC6C23B9D82D000BC94B /* YFDeviceInfo.m */; };
+		DEC401CB23BAF87300C853EB /* YFCollectionViewFlowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = DEC401CA23BAF87300C853EB /* YFCollectionViewFlowLayout.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -108,6 +109,8 @@
 		B8EBEA26239760AC00C31573 /* YF.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = YF.xcassets; sourceTree = "<group>"; };
 		DEAEDC6B23B9D82D000BC94B /* YFDeviceInfo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YFDeviceInfo.h; sourceTree = "<group>"; };
 		DEAEDC6C23B9D82D000BC94B /* YFDeviceInfo.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YFDeviceInfo.m; sourceTree = "<group>"; };
+		DEC401C923BAF87300C853EB /* YFCollectionViewFlowLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YFCollectionViewFlowLayout.h; sourceTree = "<group>"; };
+		DEC401CA23BAF87300C853EB /* YFCollectionViewFlowLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YFCollectionViewFlowLayout.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -372,6 +375,7 @@
 				B8BA3B5A239A40BF00EADBB9 /* YFDatePicker */,
 				B855DB21239DF95C00A3CA7D /* YFRouteNaviHelper */,
 				B833E01C23A36ED400933DFB /* YFDynamicTree */,
+				DEC401C823BAF87300C853EB /* YFCollectionViewFlowLayout */,
 				B8AF2A3E23A22D5E00B1A574 /* YFEXCEL */,
 			);
 			path = Tools;
@@ -384,6 +388,15 @@
 				DEAEDC6C23B9D82D000BC94B /* YFDeviceInfo.m */,
 			);
 			path = "YFDeviceInfo(设备信息)";
+			sourceTree = "<group>";
+		};
+		DEC401C823BAF87300C853EB /* YFCollectionViewFlowLayout */ = {
+			isa = PBXGroup;
+			children = (
+				DEC401C923BAF87300C853EB /* YFCollectionViewFlowLayout.h */,
+				DEC401CA23BAF87300C853EB /* YFCollectionViewFlowLayout.m */,
+			);
+			path = YFCollectionViewFlowLayout;
 			sourceTree = "<group>";
 		};
 		E2B519F1B3C0CB4B17D264BA /* Pods */ = {
@@ -496,6 +509,7 @@
 				B894DB342387BEB200C1516A /* NSString+BundlePath.m in Sources */,
 				B833E02823A3836500933DFB /* YFDynamicTreeCell.m in Sources */,
 				B80D0CEB2385365C00083573 /* YFBMKMapViewCtrl.m in Sources */,
+				DEC401CB23BAF87300C853EB /* YFCollectionViewFlowLayout.m in Sources */,
 				B8C2BD38238FBFB600A167CB /* YFBMKGeoCodeReverseManager.m in Sources */,
 				B8AF2A4123A22E8200B1A574 /* YFEXCELView.m in Sources */,
 				B8B575FB2384EC7900E800C4 /* YFBaseViewController.m in Sources */,
