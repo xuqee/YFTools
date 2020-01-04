@@ -51,6 +51,7 @@
     }
 }
 
+dispatch_once_t onceToken;
 #pragma mark --  BMKLocationManagerDelegate
 - (void)BMKLocationManager:(BMKLocationManager * _Nonnull)manager didUpdateLocation:(BMKLocation * _Nullable)location orError:(NSError * _Nullable)error{
   
@@ -66,6 +67,9 @@
     if (location ) {
         BMKUserLocation *userLocation = [[BMKUserLocation alloc] init];
         userLocation.location = location.location ;
+        dispatch_once(&onceToken, ^{
+            self.mapview.centerCoordinate = CLLocationCoordinate2DMake(location.location.coordinate.latitude, location.location.coordinate.longitude);
+        });
         if (location.rgcData.poiList.count >0) {
             userLocation.title = location.rgcData.poiList.firstObject.name ;
             userLocation.subtitle = location.rgcData.poiList.firstObject.addr ;
