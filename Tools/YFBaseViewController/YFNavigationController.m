@@ -32,6 +32,8 @@
         [[UIBarButtonItem appearance] setBackButtonTitlePositionAdjustment:UIOffsetMake(-200, 0) forBarMetrics:UIBarMetricsDefault];
         [[UIBarButtonItem appearance] setBackButtonBackgroundImage:[image resizableImageWithCapInsets:UIEdgeInsetsMake(0, image.size.width, 0, 0)] forState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
     }
+    
+//    [[UINavigationBar appearance] setBackgroundImage:[UIImage imageNamed:@"nav_bar"] forBarMetrics:UIBarMetricsDefault ];
 }
 
 /**
@@ -42,7 +44,7 @@
     NSShadow *shadow = [[NSShadow alloc] init];
     shadow.shadowColor = [UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.8];
     shadow.shadowOffset = CGSizeMake(0, 0);
-    UIColor *textColor = [UIColor blackColor];
+    UIColor *textColor = [UIColor whiteColor];
     [self.navigationBar
          setTitleTextAttributes:
                                 @{NSForegroundColorAttributeName:textColor,

@@ -14,6 +14,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 +(instancetype)dateContainer ;
 
+- (void)setDatePickerMode:(UIDatePickerMode)datePickerMode ;
+
 - (void)addMiniDate:(NSDate *__nullable)miniDate maxDate:(NSDate *__nullable)maxDate ;
 
 - (void)showDate:(NSDate *)date ;

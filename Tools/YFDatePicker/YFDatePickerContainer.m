@@ -67,6 +67,10 @@
     return self ;
 }
  
+- (void)setDatePickerMode:(UIDatePickerMode)datePickerMode {
+    self.datePicker.datePickerMode = datePickerMode ;
+}
+
 - (void)showDate:(NSDate *)date {
     self.datePicker.date =  date ;
 }
