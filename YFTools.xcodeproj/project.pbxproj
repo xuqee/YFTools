@@ -232,8 +232,8 @@
 		B894DB272387BEB200C1516A /* NSDictionary+LocaleLog */ = {
 			isa = PBXGroup;
 			children = (
-				B894DB282387BEB200C1516A /* NSDictionary+LocaleLog.m */,
 				B894DB292387BEB200C1516A /* NSDictionary+LocaleLog.h */,
+				B894DB282387BEB200C1516A /* NSDictionary+LocaleLog.m */,
 			);
 			path = "NSDictionary+LocaleLog";
 			sourceTree = "<group>";

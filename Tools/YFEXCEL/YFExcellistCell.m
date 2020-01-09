@@ -21,11 +21,12 @@
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier{
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
-        self.backgroundColor = RGB(245, 245, 245) ;
+        self.contentView.backgroundColor = kSepLineColor ;
         _gridView = [[YFExcelGridView alloc] init];
         [self.contentView addSubview:_gridView];
         [_gridView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.edges.equalTo(self);
+            make.left.bottom.top.equalTo(self.contentView);
+            make.right.equalTo(self.contentView.mas_right).offset(-kSepLineWidth);
         }];
     }
     return self ;

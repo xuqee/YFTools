@@ -185,7 +185,7 @@ static NSMutableDictionary *httpTasks;
 + (NSMutableDictionary *)httpTasks{
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        NSLog(@"创建任务数组");
+        DLog(@"创建任务数组");
         httpTasks = [[NSMutableDictionary alloc] init];
     });
     return httpTasks;

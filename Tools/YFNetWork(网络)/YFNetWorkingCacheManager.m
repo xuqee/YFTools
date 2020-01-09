@@ -88,7 +88,7 @@ static YYCache *_dataCache;
 //        BOOL ret = [zip UnzipFileTo:_unzipto overWrite:YES];
 //        if( NO==ret )
 //        {
-//            NSLog(@"error");
+//            DLog(@"error");
 //        }
 //        [zip UnzipCloseFile];
 //    }
@@ -104,7 +104,7 @@ static YYCache *_dataCache;
 //        BOOL ret = [zip UnzipFileTo:_unzipto overWrite:YES];
 //        if( NO==ret )
 //        {
-//            NSLog(@"error");
+//            DLog(@"error");
 //        }
 //        [zip UnzipCloseFile];
 //    }
@@ -118,7 +118,7 @@ static YYCache *_dataCache;
 //
 //- (IBAction)ShowImg:(id)sender {
 //    NSString *filePath = [self DownloadTextFile:@"http://www.xtox.net/img.zip" fileName:@"img.zip"];
-//    NSLog(filePath);
+//    DLog(filePath);
 //    
 //    NSArray *documentPaths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,  NSUserDomainMask,YES);//使用C函数NSSearchPathForDirectoriesInDomains来获得沙盒中目录的全路径。
 //    NSString *ourDocumentPath =[documentPaths objectAtIndex:0];
@@ -131,7 +131,7 @@ static YYCache *_dataCache;
 //
 //- (IBAction)ShowImg:(id)sender {
 //    NSString *filePath = [self DownloadTextFile:@"http://www.xtox.net/img.zip" fileName:@"img.zip"];
-//    NSLog(filePath);
+//    DLog(filePath);
 //    
 //    NSArray *documentPaths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,  NSUserDomainMask,YES);//使用C函数NSSearchPathForDirectoriesInDomains来获得沙盒中目录的全路径。
 //    NSString *ourDocumentPath =[documentPaths objectAtIndex:0];

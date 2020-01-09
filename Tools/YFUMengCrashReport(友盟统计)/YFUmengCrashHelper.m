@@ -24,7 +24,7 @@
 //NSException *exception = [NSException exceptionWithName:@"异常" reason:@"崩溃吧孩子" userInfo:@{@"Hello":@"World"}];
 //  @throw exception ;
 static void uncaughtExceptionHandler(NSException *exception) {
-    NSLog(@"%@\n%@", exception, [exception callStackSymbols]);
+    DLog(@"%@\n%@", exception, [exception callStackSymbols]);
 }
 
 

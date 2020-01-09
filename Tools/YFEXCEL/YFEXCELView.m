@@ -49,7 +49,7 @@ static NSString *const kYFEXCELCellIdentify = @"com.YF.EXCEL.Cell" ;
 }
 
 - (void)setup{
-    self.backgroundColor = [UIColor groupTableViewBackgroundColor] ;
+    self.backgroundColor = [UIColor whiteColor] ;
     UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:nil];
     tapGestureRecognizer.delegate = self;
     [self addGestureRecognizer:tapGestureRecognizer];
@@ -280,7 +280,7 @@ static NSString *const kYFEXCELCellIdentify = @"com.YF.EXCEL.Cell" ;
         _container = [[UIView alloc] init ];
         [_scrollView addSubview:_container];
     }
-    CGFloat width = (_lineItemSizes.count-1)*kSepLineWidth ;
+    CGFloat width = (_lineItemSizes.count)*kSepLineWidth ;
     for (NSString *sizeStr in _lineItemSizes) {
         width += CGSizeFromString(sizeStr).width ;
     }
@@ -313,7 +313,7 @@ static NSString *const kYFEXCELCellIdentify = @"com.YF.EXCEL.Cell" ;
 ////多种手势处理
 - (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch {
     if ([NSStringFromClass([touch.view class]) isEqualToString:@"UITableViewCellContentView"]) {
-         NSLog(@"%@",touch.view);
+         DLog(@"%@",touch.view);
         return NO;
     }
     return YES;

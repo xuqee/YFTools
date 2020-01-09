@@ -56,7 +56,7 @@ dispatch_once_t onceToken;
 - (void)BMKLocationManager:(BMKLocationManager * _Nonnull)manager didUpdateLocation:(BMKLocation * _Nullable)location orError:(NSError * _Nullable)error{
   
     if (error) {
-        NSLog(@"%@",error.localizedDescription);
+        DLog(@"%@",error.localizedDescription);
         return ;
     }
     
@@ -84,7 +84,7 @@ dispatch_once_t onceToken;
 - (void)mapViewDidFinishLoading:(BMKMapView *)mapView{
     CLLocationCoordinate2D coor = CLLocationCoordinate2DMake(39.915, 116.404);
     mapView.centerCoordinate = coor ;
-    NSLog(@"mapViewDidFinishLoading");
+    DLog(@"mapViewDidFinishLoading");
     [self.locationManager startUpdatingLocation];
 }
 
