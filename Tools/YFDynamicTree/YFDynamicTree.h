@@ -34,7 +34,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, assign)   NSInteger selectedCount ;
 @property (nonatomic, assign)   NSInteger totalMemberCount ;
 
-@property (nonatomic, weak) id<YFDynamicTreeDelegate> delegate ;
+@property (nonatomic, weak)     id<YFDynamicTreeDelegate> delegate ;
 
 @property (nonatomic, strong)   NSMutableArray<YFDynamicTreeNode *> *treeNodes ;
 @property (nonatomic, strong)   NSMutableArray<YFDynamicTreeNode *> *showNodes ;
@@ -44,7 +44,7 @@ NS_ASSUME_NONNULL_BEGIN
 /// 初始化需要展示的nodes
 /// @param treeNodes 所有的nodes
 /// @param rootNodes 根nodes
-- (void)setTreeNodes:(NSArray *)treeNodes  rootNodes:(NSArray *)rootNodes ;
+- (void)setTreeNodes:(NSArray *)treeNodes rootNodes:(NSArray *)rootNodes ;
 - (void)registCellCls:(Class)cellCls reuseIdentify:(NSString *)identify;
 - (void)registCellNib:(UINib *)nib reuseIdentify:(NSString *)identify;
 

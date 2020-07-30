@@ -61,7 +61,6 @@
     self.treeNodes = treeNodes  ;
     self.showNodes = showNodes  ;
     [self generateData:datas];
-    
 }
 
 - (void)generateData:(NSArray *)datas{
